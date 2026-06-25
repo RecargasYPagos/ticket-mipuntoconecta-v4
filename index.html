@@ -305,3 +305,321 @@ mostrarFormularioRecarga();
 }
 
 };
+function mostrarFormularioRecarga(){
+
+let folio=generarFolio();
+
+formulario.innerHTML=`
+
+<div id="listaRecargas">
+
+<div class="recarga">
+
+<label>Operadora</label>
+
+<select class="operadora">
+
+<option>Telcel</option>
+
+<option>BAIT</option>
+
+<option>Axios</option>
+
+<option>AT&T</option>
+
+<option>Movistar</option>
+
+</select>
+
+<label>Número</label>
+
+<input
+class="numero"
+maxlength="10"
+placeholder="9611234567">
+
+<label>Monto</label>
+
+<select
+class="monto">
+
+<option value="10">$10</option>
+
+<option value="20">$20</option>
+
+<option value="30">$30</option>
+
+<option value="40">$40</option>
+
+<option value="50">$50</option>
+
+<option value="60">$60</option>
+
+<option value="70">$70</option>
+
+<option value="80">$80</option>
+
+<option value="100">$100</option>
+
+<option value="120">$120</option>
+
+<option value="125">$125</option>
+
+<option value="130">$130</option>
+
+<option value="140">$140</option>
+
+<option value="150">$150</option>
+
+<option value="200">$200</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button
+type="button"
+class="secundario"
+id="agregar">
+
+➕ Agregar Recarga
+
+</button>
+
+<label>
+
+Tipo de pago
+
+</label>
+
+<select id="tipoPago">
+
+<option>
+
+Contado
+
+</option>
+
+<option>
+
+Crédito
+
+</option>
+
+</select>
+
+<div
+id="credito"
+style="display:none;">
+
+<label>
+
+Plazo (días)
+
+</label>
+
+<input
+type="number"
+id="plazo"
+value="5">
+
+</div>
+
+<label>
+
+Folio
+
+</label>
+
+<input
+id="folio"
+value="${folio}">
+
+<button
+id="generar">
+
+Generar Ticket
+
+</button>
+
+`;
+
+document
+.getElementById("tipoPago")
+.onchange=function(){
+
+credito.style.display=
+
+this.value=="Crédito"
+
+?
+
+"block"
+
+:
+
+"none";
+
+};
+
+document
+.getElementById("agregar")
+.onclick=function(){
+
+let bloque=
+
+document
+.querySelector(".recarga")
+.cloneNode(true);
+
+document
+.getElementById("listaRecargas")
+.appendChild(bloque);
+
+};
+
+document
+.getElementById("generar")
+.onclick=generarTicketRecarga;
+
+}
+
+function beneficio(
+
+operadora,
+
+monto
+
+){
+
+const datos={
+
+"Telcel":{
+
+10:"Dudas al *264.",
+
+20:"100MB libres. Vigencia 2 días.",
+
+30:"160MB libres. Vigencia 3 días.",
+
+50:"500MB libres. Vigencia 7 días.",
+
+80:"800MB libres. Vigencia 12 días.",
+
+100:"1.5GB libres. Vigencia 15 días.",
+
+150:"2.5GB libres. Vigencia 25 días.",
+
+200:"3.5GB libres. Vigencia 30 días."
+
+},
+
+"BAIT":{
+
+30:"1GB + Redes Sociales.",
+
+50:"2GB + Redes Sociales.",
+
+60:"4GB + Redes Sociales.",
+
+100:"5GB + Redes Sociales.",
+
+120:"Internet ilimitado.",
+
+125:"8GB + Redes Sociales.",
+
+200:"12GB + Redes Sociales."
+
+},
+
+"Axios":{
+
+15:"500MB + Redes Sociales.",
+
+30:"500MB + 250 min.",
+
+40:"2GB.",
+
+50:"2GB + Redes.",
+
+70:"6GB.",
+
+100:"2GB por 30 días.",
+
+120:"3GB por 30 días.",
+
+130:"10GB por 15 días.",
+
+150:"4GB por 30 días."
+
+},
+
+"AT&T":{
+
+10:"100MB.",
+
+20:"200MB.",
+
+30:"300MB.",
+
+50:"750MB.",
+
+70:"4.5GB.",
+
+100:"2GB.",
+
+120:"7.5GB.",
+
+150:"3GB.",
+
+200:"4GB."
+
+},
+
+"Movistar":{
+
+10:"Consulta *611.",
+
+20:"Consulta *611.",
+
+30:"Vigencia 3 días.",
+
+50:"600MB + Redes.",
+
+60:"Consulta *611.",
+
+70:"Consulta *611.",
+
+80:"Consulta *611.",
+
+100:"Vigencia 15 días.",
+
+120:"Consulta *611.",
+
+140:"7GB.",
+
+150:"Vigencia 28 días.",
+
+200:"Vigencia 30 días."
+
+}
+
+};
+
+if(
+
+datos[operadora]
+
+&&
+
+datos[operadora][monto]
+
+){
+
+return datos[operadora][monto];
+
+}
+
+return "Beneficio no registrado.";
