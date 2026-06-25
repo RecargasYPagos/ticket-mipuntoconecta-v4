@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mi Punto Conecta V4</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+padding:10px;
+max-width:500px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+h1{
+text-align:center;
+font-size:22px;
+margin-bottom:5px;
+}
+
+h2{
+font-size:18px;
+margin-bottom:10px;
+}
+
+.sub{
+text-align:center;
+color:#666;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:10px;
+font-weight:bold;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#007bff;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.hidden{
+display:none;
+}
+
+.ticket{
+background:white;
+padding:15px;
+font-family:monospace;
+white-space:pre-wrap;
+word-wrap:break-word;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+.menu-btn{
+background:#28a745;
+}
+
+.admin-btn{
+background:#6c757d;
+}
+
+.danger{
+background:#dc3545;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>MI PUNTO CONECTA</h1>
+
+<div class="sub">
+Recargas, Pagos y Servicios
+</div>
+
+<label>Servicio</label>
+
+<select id="tipoServicio">
+
+<option value="">Seleccionar...</option>
+
+<option value="recarga">
+📱 Recarga
+</option>
+
+<option value="deposito">
+💰 Depósito en efectivo
+</option>
+
+<option value="retiro">
+💸 Retiro de efectivo
+</option>
+
+<option value="servicios">
+📺 Pago de servicios
+</option>
+
+</select>
+
+</div>
+
+<div id="formulario" class="card">
+
+<h2>Formulario</h2>
+
+<div id="contenidoFormulario">
+
+Selecciona un servicio.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<button id="btnHistorial" class="admin-btn">
+📚 Historial
+</button>
+
+<button id="btnCorte" class="admin-btn">
+📊 Corte de Caja
+</button>
+
+<button id="btnConfig" class="admin-btn">
+⚙️ Configuración
+</button>
+
+</div>
+
+<div id="ticketPreview"
+class="card hidden">
+
+<h2>Vista previa</h2>
+
+<div class="ticket"
+id="ticket"></div>
+
+<button>
+⬇️ Descargar PNG
+</button>
+
+<button>
+🖨️ Imprimir
+</button>
+
+<button>
+📲 Compartir WhatsApp
+</button>
+
+</div>
+
+<script>
+
+/* CONFIGURACIÓN */
+
+const configDefault = {
+
+negocio:"Mi Punto Conecta",
+
+direccion:
+"Calle Emiliano Zapata S/N\nTriunfo Agrarista\nOsumacinta, Chiapas",
+
+terminal:"MPC-001",
+
+comisionRecarga:5,
+
+pin:"1234"
+
+};
+
+function cargarConfig(){
+
+let config =
+JSON.parse(
+localStorage.getItem("mpc_config")
+);
+
+if(!config){
+
+localStorage.setItem(
+"mpc_config",
+JSON.stringify(configDefault)
+);
+
+config=configDefault;
+
+}
+
+return config;
+
+}
+
+function guardarConfig(config){
+
+localStorage.setItem(
+"mpc_config",
+JSON.stringify(config)
+);
+
+}
+
+/* FOLIOS */
+
+function generarFolio(){
+
+const hoy=new Date();
+
+const fecha=
+hoy.getFullYear()+
+String(hoy.getMonth()+1).padStart(2,"0")+
+String(hoy.getDate()).padStart(2,"0");
+
+let contador=
+localStorage.getItem("mpc_contador");
+
+if(!contador){
+
+contador=1;
+
+}else{
+
+contador=parseInt(contador)+1;
+
+}
+
+localStorage.setItem(
+"mpc_contador",
+contador
+);
+
+return
+`MPC-${fecha}-${String(contador).padStart(3,"0")}`;
+
+}
+
+/* PIN */
+
+function pedirPin(){
+
+const config=
+cargarConfig();
+
+const pin=
+prompt("Ingrese PIN");
+
+if(pin===config.pin){
+
+return true;
+
+}
+
+alert("PIN incorrecto");
+
+return false;
+
+}
+
+/* BOTONES */
+
+document
+.getElementById("btnHistorial")
+.onclick=()=>{
+
+if(!pedirPin()) return;
+
+alert(
+"Historial disponible en Parte 4"
+);
+
+};
+
+document
+.getElementById("btnCorte")
+.onclick=()=>{
+
+if(!pedirPin()) return;
+
+alert(
+"Corte disponible en Parte 4"
+);
+
+};
+
+document
+.getElementById("btnConfig")
+.onclick=()=>{
+
+if(!pedirPin()) return;
+
+let config=
+cargarConfig();
+
+let negocio=
+prompt(
+"Nombre negocio",
+config.negocio
+);
+
+if(!negocio) return;
+
+config.negocio=negocio;
+
+guardarConfig(config);
+
+alert("Guardado");
+
+};
+
+/* CAMBIO SERVICIO */
+
+document
+.getElementById("tipoServicio")
+.addEventListener(
+"change",
+function(){
+
+const tipo=this.value;
+
+const cont=
+document
+.getElementById(
+"contenidoFormulario"
+);
+
+if(tipo==="recarga"){
+
+cont.innerHTML=`
+
+<label>Folio</label>
+<input value="${generarFolio()}">
+
+<p style="margin-top:10px;">
+Módulo Recargas
+(Parte 2)
+</p>
+
+`;
+
+}
+
+else if(tipo==="deposito"){
+
+cont.innerHTML=`
+
+<label>Folio</label>
+<input value="${generarFolio()}">
+
+<p style="margin-top:10px;">
+Módulo Depósitos
+(Parte 3)
+</p>
+
+`;
+
+}
+
+else if(tipo==="retiro"){
+
+cont.innerHTML=`
+
+<label>Folio</label>
+<input value="${generarFolio()}">
+
+<p style="margin-top:10px;">
+Módulo Retiros
+(Parte 3)
+</p>
+
+`;
+
+}
+
+else if(tipo==="servicios"){
+
+cont.innerHTML=`
+
+<label>Folio</label>
+<input value="${generarFolio()}">
+
+<p style="margin-top:10px;">
+Módulo Servicios
+(Parte 3)
+</p>
+
+`;
+
+}
+
+}
+);
+
+</script>
+
+</body>
+</html>
