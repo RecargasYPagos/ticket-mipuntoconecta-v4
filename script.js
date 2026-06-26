@@ -48,3 +48,60 @@ btnRetiros.onclick = function () {
 btnServicios.onclick = function () {
     alert("Módulo Pago de Servicios (Próximamente)");
 };
+
+function mostrarFormularioDeposito() {
+
+    let folio = generarFolio();
+
+    formulario.innerHTML = `
+
+    <h2>💰 Depósito en efectivo</h2>
+
+    <label>Banco destino</label>
+
+    <select id="banco">
+        <option>BBVA</option>
+        <option>Banamex</option>
+        <option>Banorte</option>
+        <option>Santander</option>
+        <option>Banco Azteca</option>
+        <option>Banco del Bienestar</option>
+        <option>HSBC</option>
+        <option>Scotiabank</option>
+        <option>Inbursa</option>
+        <option>BanCoppel</option>
+    </select>
+
+    <label>Titular</label>
+    <input id="titular">
+
+    <label>Número de cuenta o tarjeta</label>
+    <input id="cuenta">
+
+    <label>Monto</label>
+    <input type="number" id="monto">
+
+    <label>Comisión</label>
+    <input type="number" id="comision">
+
+    <label>Horario</label>
+    <input id="horario" placeholder="09:00 - 21:00">
+
+    <label>Folio</label>
+    <input id="folioDeposito" value="${folio}">
+
+    <button id="generarDeposito">
+        Generar Ticket
+    </button>
+
+    `;
+
+    document
+        .getElementById("generarDeposito")
+        .onclick = function () {
+
+        alert("En el siguiente paso generaremos el ticket.");
+
+    };
+
+}
