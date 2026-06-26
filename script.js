@@ -27,3 +27,24 @@ function generarFolio() {
     return "MPC-" + fecha + "-" + String(consecutivo).padStart(3, "0");
 
 }
+
+const btnRecargas = document.getElementById("btnRecargas");
+const btnDepositos = document.getElementById("btnDepositos");
+const btnRetiros = document.getElementById("btnRetiros");
+const btnServicios = document.getElementById("btnServicios");
+
+btnRecargas.onclick = function () {
+    mostrarFormularioRecarga();
+};
+
+btnDepositos.onclick = function () {
+    mostrarFormularioDeposito();
+};
+
+btnRetiros.onclick = function () {
+    alert("Módulo Retiros (Próximamente)");
+};
+
+btnServicios.onclick = function () {
+    alert("Módulo Pago de Servicios (Próximamente)");
+};
