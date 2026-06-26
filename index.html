@@ -450,17 +450,13 @@ document
 .getElementById("tipoPago")
 .onchange=function(){
 
-credito.style.display=
+const credito =
+document.getElementById("credito");
 
+credito.style.display =
 this.value=="Crédito"
-
-?
-
-"block"
-
-:
-
-"none";
+? "block"
+: "none";
 
 };
 
