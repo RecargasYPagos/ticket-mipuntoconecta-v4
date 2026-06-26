@@ -324,13 +324,27 @@ return "MPC-"+fecha+"-"+String(consecutivo).padStart(3,"0");
 
 }
 
-servicio.onchange=function(){
-
-if(this.value=="recarga"){
+btnRecargas.onclick=function(){
 
 mostrarFormularioRecarga();
 
-}
+};
+
+btnDepositos.onclick=function(){
+
+alert("Módulo Depósitos (Próxima actualización)");
+
+};
+
+btnRetiros.onclick=function(){
+
+alert("Módulo Retiros (Próxima actualización)");
+
+};
+
+btnServicios.onclick=function(){
+
+alert("Módulo Pago de Servicios (Próxima actualización)");
 
 };
 function mostrarFormularioRecarga(){
