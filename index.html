@@ -619,3 +619,169 @@ return datos[operadora][monto];
 }
 
 return "Beneficio no registrado.";
+
+}
+
+function generarTicketRecarga(){
+
+let bloques=document.querySelectorAll(".recarga");
+
+let texto="";
+
+let totalRecargas=0;
+
+let totalComision=0;
+
+bloques.forEach(function(b,i){
+
+let operadora=b.querySelector(".operadora").value;
+
+let numero=b.querySelector(".numero").value;
+
+let monto=parseFloat(
+b.querySelector(".monto").value
+);
+
+let beneficioTexto=
+beneficio(operadora,monto);
+
+totalRecargas+=monto;
+
+totalComision+=CONFIG.comisionRecarga;
+
+texto+=
+"--------------------------------\n";
+
+texto+=
+"RECARGA "+(i+1)+"\n\n";
+
+texto+=
+"OPERADORA: "+operadora+"\n";
+
+texto+=
+"NUMERO: "+numero+"\n";
+
+texto+=
+"MONTO: $"+monto.toFixed(2)+"\n";
+
+texto+=
+"COMISION: $"+
+CONFIG.comisionRecarga.toFixed(2)+"\n\n";
+
+texto+=
+"BENEFICIOS:\n";
+
+texto+=
+beneficioTexto+"\n\n";
+
+});
+
+let total=
+
+totalRecargas+
+
+totalComision;
+
+let tipo=
+
+document.getElementById("tipoPago").value;
+
+let estado="PAGADO";
+
+let extra="";
+
+if(tipo=="Crédito"){
+
+estado="PENDIENTE DE PAGO";
+
+let plazo=parseInt(
+
+document.getElementById("plazo").value
+
+);
+
+let fecha=new Date();
+
+fecha.setDate(
+
+fecha.getDate()+
+
+(plazo-1)
+
+);
+
+extra+=
+"\nPLAZO: "+plazo+" días";
+
+extra+=
+"\nFECHA DE PAGO: "+
+
+fecha.toLocaleDateString();
+
+}
+
+let ahora=new Date();
+
+ticket.style.display="block";
+
+ticket.textContent=
+
+"================================\n"+
+
+"        MI PUNTO CONECTA\n"+
+
+"   RECARGAS, PAGOS Y SERVICIOS\n"+
+
+"================================\n\n"+
+
+"RECARGA EXITOSA ✓\n\n"+
+
+"FECHA: "+
+
+ahora.toLocaleDateString()+"\n"+
+
+"HORA: "+
+
+ahora.toLocaleTimeString()+"\n\n"+
+
+texto+
+
+"================================\n"+
+
+"TOTAL RECARGAS: $"+
+
+totalRecargas.toFixed(2)+"\n"+
+
+"COMISIONES: $"+
+
+totalComision.toFixed(2)+"\n"+
+
+"TOTAL COBRADO: $"+
+
+total.toFixed(2)+"\n\n"+
+
+"FOLIO: "+
+
+document.getElementById("folio").value+
+
+"\n"+
+
+"ESTATUS: "+
+
+estado+
+
+extra+
+
+"\n\n================================\n"+
+
+CONFIG.negocio+"\n"+
+
+CONFIG.direccion;
+
+}
+
+</script>
+
+</body>
+
+</html>
