@@ -38,6 +38,7 @@ const btnConfig=document.getElementById("btnConfig");
 btnRecargas.onclick=()=>mostrarFormularioRecarga();
 
 btnDepositos.onclick=()=>mostrarFormularioDeposito();
+console.log("Botón depósitos conectado");
 
 btnRetiros.onclick=()=>mostrarFormularioRetiro();
 
@@ -753,3 +754,4 @@ function generarTicketDeposito(){
     alert("Parte 3B");
 
 }
+console.log("Script cargado completo");
