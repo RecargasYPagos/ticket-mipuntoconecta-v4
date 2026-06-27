@@ -227,12 +227,8 @@ function mostrarFormularioRecarga(){
     };
 
     document
-    .getElementById("generarTicket")
-    .onclick = function(){
-
-        alert("Parte 2B");
-
-    };
+.getElementById("generarTicket")
+.onclick = generarTicketRecarga;
 
 }
 
