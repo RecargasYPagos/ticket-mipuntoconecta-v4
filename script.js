@@ -531,5 +531,15 @@ CONFIG.negocio+
 "\n"+
 
 CONFIG.direccion;
+guardarHistorial({
+    fecha: ahora.toLocaleDateString(),
+    hora: ahora.toLocaleTimeString(),
+    folio: folio,
+    servicio: "Recarga",
+    total: total,
+    ticket: ticket.textContent
+});
+
+mostrarBotonesTicket();
 
 }
