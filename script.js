@@ -780,3 +780,114 @@ function generarTicketDeposito(){
 
 }
 console.log("Script cargado completo");
+
+// =====================================
+// MÓDULO DEPÓSITOS - PARTE 3B-2
+// TICKET DEFINITIVO
+// =====================================
+
+function ocultarCuenta(cuenta){
+
+    cuenta = cuenta.replace(/\D/g,"");
+
+    if(cuenta.length < 8){
+        return cuenta;
+    }
+
+    return (
+        cuenta.substring(0,4) +
+        " **** **** " +
+        cuenta.substring(cuenta.length-4)
+    );
+
+}
+
+function construirTicketDeposito(
+
+banco,
+titular,
+cuenta,
+monto,
+comision,
+total,
+horario,
+folio
+
+){
+
+    const ahora = new Date();
+
+    const autorizacion = "";
+
+    ticket.style.display = "block";
+
+    ticket.textContent =
+
+"================================\n"+
+"        MI PUNTO CONECTA\n"+
+"   RECARGAS, PAGOS Y SERVICIOS\n"+
+"================================\n\n"+
+
+"DEPÓSITO EN EFECTIVO ✓\n\n"+
+
+"FECHA: " + ahora.toLocaleDateString() + "\n"+
+"HORA : " + ahora.toLocaleTimeString() + "\n\n"+
+
+"BANCO : " + banco + "\n"+
+"TITULAR:\n"+
+titular + "\n\n"+
+
+"CUENTA:\n"+
+ocultarCuenta(cuenta) + "\n\n"+
+
+"IMPORTE : $" + monto.toFixed(2) + "\n"+
+"COMISIÓN: $" + comision.toFixed(2) + "\n"+
+"TOTAL   : $" + total.toFixed(2) + "\n\n"+
+
+"FOLIO   : " + folio + "\n"+
+"TERMINAL: " + CONFIG.terminal + "\n";
+
+    if(horario.trim()!=""){
+
+        ticket.textContent +=
+"HORARIO : " + horario + "\n";
+
+    }
+
+    if(autorizacion!=""){
+
+        ticket.textContent +=
+"AUTORIZ.: " + autorizacion + "\n";
+
+    }
+
+    ticket.textContent +=
+
+"\n================================\n"+
+
+CONFIG.negocio + "\n"+
+
+CONFIG.direccion + "\n\n"+
+
+"Conserve este comprobante.\n"+
+"Gracias por su preferencia.";
+
+    guardarHistorial({
+
+        fecha: ahora.toLocaleDateString(),
+
+        hora: ahora.toLocaleTimeString(),
+
+        folio: folio,
+
+        servicio: "Depósito",
+
+        total: total,
+
+        ticket: ticket.textContent
+
+    });
+
+    mostrarBotonesTicket();
+
+}
