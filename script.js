@@ -769,6 +769,9 @@ function generarTicketDeposito(){
 
     const horario = document.getElementById("horario").value;
 
+    const autorizacion =
+document.getElementById("autorizacion").value;
+
     const folio = document.getElementById("folioDeposito").value;
 
     const total = monto + comision;
