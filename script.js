@@ -727,6 +727,12 @@ function mostrarFormularioDeposito(){
     id="horario"
     placeholder="09:00 - 21:00">
 
+    <label>Número de autorización (opcional)</label>
+
+<input
+id="autorizacion"
+placeholder="Ejemplo: 84752136">
+
     <label>Folio</label>
 
     <input
