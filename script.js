@@ -544,3 +544,66 @@ guardarHistorial({
 mostrarBotonesTicket();
 
 }
+
+// =====================================
+// MÓDULO RECARGAS - PARTE 2D-1
+// HISTORIAL Y BOTONES
+// =====================================
+
+function guardarHistorial(registro){
+
+    let historial =
+    JSON.parse(localStorage.getItem("historialMPC") || "[]");
+
+    historial.unshift(registro);
+
+    localStorage.setItem(
+        "historialMPC",
+        JSON.stringify(historial)
+    );
+
+}
+
+function mostrarBotonesTicket(){
+
+    if(document.getElementById("botonesTicket")){
+        return;
+    }
+
+    const botones = document.createElement("div");
+
+    botones.id = "botonesTicket";
+
+    botones.className = "botonesTicket";
+
+    botones.innerHTML = `
+
+<button id="btnDescargar" class="btnDescargar">
+📥 Descargar Ticket
+</button>
+
+<button id="btnImprimir" class="btnImprimir">
+🖨️ Imprimir
+</button>
+
+<button id="btnWhatsapp" class="btnWhatsapp">
+📲 Compartir por WhatsApp
+</button>
+
+`;
+
+    ticket.insertAdjacentElement(
+        "afterend",
+        botones
+    );
+
+    document.getElementById("btnDescargar").onclick =
+    descargarTicket;
+
+    document.getElementById("btnImprimir").onclick =
+    imprimirTicket;
+
+    document.getElementById("btnWhatsapp").onclick =
+    compartirWhatsapp;
+
+}
