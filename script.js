@@ -607,3 +607,59 @@ function mostrarBotonesTicket(){
     compartirWhatsapp;
 
 }
+
+// =====================================
+// MÓDULO RECARGAS - PARTE 2D-2
+// DESCARGAR - IMPRIMIR - WHATSAPP
+// =====================================
+
+function descargarTicket(){
+
+    const contenido = ticket.textContent;
+
+    const archivo = new Blob(
+        [contenido],
+        {type:"text/plain"}
+    );
+
+    const enlace = document.createElement("a");
+
+    enlace.href = URL.createObjectURL(archivo);
+
+    enlace.download =
+    "Ticket-"+Date.now()+".txt";
+
+    enlace.click();
+
+}
+
+function imprimirTicket(){
+
+    const ventana = window.open("", "_blank");
+
+    ventana.document.write("<pre>");
+
+    ventana.document.write(ticket.textContent);
+
+    ventana.document.write("</pre>");
+
+    ventana.document.close();
+
+    ventana.print();
+
+}
+
+function compartirWhatsapp(){
+
+    const mensaje =
+    encodeURIComponent(ticket.textContent);
+
+    window.open(
+
+    "https://wa.me/?text="+mensaje,
+
+    "_blank"
+
+    );
+
+}
