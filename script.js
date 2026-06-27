@@ -365,3 +365,100 @@ return beneficios[operadora][monto];
 return "Beneficio no registrado.";
 
 }
+// =====================================
+// MÓDULO RECARGAS - PARTE 2C-1
+// GENERAR DATOS DEL TICKET
+// =====================================
+
+function generarTicketRecarga(){
+
+    const bloques = document.querySelectorAll(".recarga");
+
+    let detalle = "";
+
+    let totalRecargas = 0;
+
+    let totalComision = 0;
+
+    bloques.forEach(function(bloque,index){
+
+        const operadora = bloque.querySelector(".operadora").value;
+
+        const numero = bloque.querySelector(".numero").value;
+
+        const monto = parseFloat(
+            bloque.querySelector(".monto").value
+        );
+
+        totalRecargas += monto;
+
+        totalComision += CONFIG.comisionRecarga;
+
+        detalle +=
+"--------------------------------\n";
+
+        detalle +=
+"RECARGA " + (index+1) + "\n\n";
+
+        detalle +=
+"OPERADORA: " + operadora + "\n";
+
+        detalle +=
+"NUMERO: " + numero + "\n";
+
+        detalle +=
+"MONTO: $" + monto.toFixed(2) + "\n";
+
+        detalle +=
+"COMISION: $" + CONFIG.comisionRecarga.toFixed(2) + "\n\n";
+
+        detalle +=
+"BENEFICIOS:\n";
+
+        detalle +=
+obtenerBeneficio(operadora,monto) + "\n\n";
+
+    });
+
+    const total = totalRecargas + totalComision;
+
+    const tipoPago =
+        document.getElementById("tipoPago").value;
+
+    let estado = "PAGADO";
+
+    let datosCredito = "";
+
+    if(tipoPago=="Crédito"){
+
+        estado="PENDIENTE DE PAGO";
+
+        const plazo=parseInt(
+            document.getElementById("plazo").value
+        );
+
+        const fecha=new Date();
+
+        fecha.setDate(
+            fecha.getDate() + (plazo-1)
+        );
+
+        datosCredito +=
+"\nPLAZO: " + plazo + " días";
+
+        datosCredito +=
+"\nFECHA DE PAGO: " +
+fecha.toLocaleDateString();
+
+    }
+
+    construirTicketRecarga(
+        detalle,
+        totalRecargas,
+        totalComision,
+        total,
+        estado,
+        datosCredito
+    );
+
+}
