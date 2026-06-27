@@ -462,3 +462,74 @@ fecha.toLocaleDateString();
     );
 
 }
+// =====================================
+// MÓDULO RECARGAS - PARTE 2C-2
+// CONSTRUIR TICKET
+// =====================================
+
+function construirTicketRecarga(
+detalle,
+totalRecargas,
+totalComision,
+total,
+estado,
+datosCredito
+){
+
+    const ahora = new Date();
+
+    const folio =
+    document.getElementById("folio").value;
+
+    ticket.style.display="block";
+
+    ticket.textContent =
+
+"================================\n"+
+"        MI PUNTO CONECTA\n"+
+"   RECARGAS, PAGOS Y SERVICIOS\n"+
+"================================\n\n"+
+
+"RECARGA EXITOSA\n\n"+
+
+"FECHA: "+
+ahora.toLocaleDateString()+
+"\n"+
+
+"HORA: "+
+ahora.toLocaleTimeString()+
+"\n\n"+
+
+detalle+
+
+"================================\n"+
+
+"TOTAL RECARGAS: $"+
+totalRecargas.toFixed(2)+
+"\n"+
+
+"COMISIONES: $"+
+totalComision.toFixed(2)+
+"\n"+
+
+"TOTAL COBRADO: $"+
+total.toFixed(2)+
+"\n\n"+
+
+"FOLIO: "+
+folio+
+"\n"+
+
+"ESTATUS: "+
+estado+
+
+datosCredito+
+
+"\n\n================================\n"+
+
+CONFIG.negocio+
+"\n"+
+
+CONFIG.direccion;
+
+}
