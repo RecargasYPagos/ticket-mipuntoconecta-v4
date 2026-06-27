@@ -751,7 +751,32 @@ function mostrarFormularioDeposito(){
 
 function generarTicketDeposito(){
 
-    alert("Parte 3B");
+    const banco = document.getElementById("banco").value;
+
+    const titular = document.getElementById("titular").value;
+
+    const cuenta = document.getElementById("cuenta").value;
+
+    const monto = parseFloat(document.getElementById("montoDeposito").value || 0);
+
+    const comision = parseFloat(document.getElementById("comisionDeposito").value || 0);
+
+    const horario = document.getElementById("horario").value;
+
+    const folio = document.getElementById("folioDeposito").value;
+
+    const total = monto + comision;
+
+    construirTicketDeposito(
+        banco,
+        titular,
+        cuenta,
+        monto,
+        comision,
+        total,
+        horario,
+        folio
+    );
 
 }
 console.log("Script cargado completo");
