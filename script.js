@@ -531,6 +531,7 @@ CONFIG.negocio+
 "\n"+
 
 CONFIG.direccion;
+
 guardarHistorial({
     fecha: ahora.toLocaleDateString(),
     hora: ahora.toLocaleTimeString(),
