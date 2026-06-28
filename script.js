@@ -901,3 +901,71 @@ CONFIG.direccion + "\n\n"+
     mostrarBotonesTicket();
 
 }
+// =====================================
+// MÓDULO RETIROS - PARTE 4A-1
+// FORMULARIO
+// =====================================
+
+function mostrarFormularioRetiro(){
+
+    limpiarPantalla();
+
+    const folio = generarFolio();
+
+    formulario.innerHTML = `
+
+    <h2>💸 Retiro de efectivo</h2>
+
+    <label>Monto a retirar</label>
+
+    <input
+    type="number"
+    id="montoRetiro">
+
+    <label>Comisión</label>
+
+    <input
+    type="number"
+    id="comisionRetiro"
+    placeholder="Ejemplo: 17">
+
+    <label>Banco / Tarjeta</label>
+
+    <input
+    id="bancoRetiro"
+    placeholder="BBVA, Banamex, Santander...">
+
+    <label>Últimos 4 dígitos de la tarjeta</label>
+
+    <input
+    id="ultimos4"
+    maxlength="4"
+    placeholder="1234">
+
+    <label>Número de autorización (opcional)</label>
+
+    <input
+    id="autorizacionRetiro"
+    placeholder="Ejemplo: 582741">
+
+    <label>Folio</label>
+
+    <input
+    id="folioRetiro"
+    value="${folio}">
+
+    <button
+    id="generarRetiro"
+    class="accion">
+
+    Generar Ticket
+
+    </button>
+
+    `;
+
+    document
+    .getElementById("generarRetiro")
+    .onclick = generarTicketRetiro;
+
+}
