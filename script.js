@@ -777,15 +777,16 @@ document.getElementById("autorizacion").value;
     const total = monto + comision;
 
     construirTicketDeposito(
-        banco,
-        titular,
-        cuenta,
-        monto,
-        comision,
-        total,
-        horario,
-        folio
-    );
+    banco,
+    titular,
+    cuenta,
+    monto,
+    comision,
+    total,
+    horario,
+    autorizacion,
+    folio
+);
 
 }
 console.log("Script cargado completo");
