@@ -1006,3 +1006,78 @@ function generarTicketRetiro(){
     );
 
 }
+// =====================================
+// MÓDULO RETIROS - PARTE 4B-1
+// TICKET
+// =====================================
+
+function construirTicketRetiro(
+
+monto,
+comision,
+total,
+banco,
+ultimos4,
+autorizacion,
+folio
+
+){
+
+    const ahora = new Date();
+
+    ticket.style.display = "block";
+
+    ticket.textContent =
+
+"================================\n"+
+"        MI PUNTO CONECTA\n"+
+"   RECARGAS, PAGOS Y SERVICIOS\n"+
+"================================\n\n"+
+
+"RETIRO DE EFECTIVO ✓\n\n"+
+
+"FECHA: " + ahora.toLocaleDateString() + "\n"+
+"HORA : " + ahora.toLocaleTimeString() + "\n\n"+
+
+"BANCO : " + banco + "\n"+
+"TARJETA: **** " + ultimos4 + "\n\n"+
+
+"RETIRO : $" + monto.toFixed(2) + "\n"+
+"COMISIÓN: $" + comision.toFixed(2) + "\n"+
+"TOTAL   : $" + total.toFixed(2) + "\n\n"+
+
+"FOLIO   : " + folio + "\n"+
+"TERMINAL: " + CONFIG.terminal + "\n";
+
+    if(autorizacion.trim()!=""){
+
+        ticket.textContent +=
+"AUTORIZACIÓN: " + autorizacion + "\n";
+
+    }
+
+    ticket.textContent +=
+
+"\n================================\n"+
+
+CONFIG.negocio + "\n"+
+
+CONFIG.direccion + "\n\n"+
+
+"Conserve este comprobante.\n"+
+"Gracias por su preferencia.";
+
+    guardarHistorial({
+
+        fecha: ahora.toLocaleDateString(),
+        hora: ahora.toLocaleTimeString(),
+        folio: folio,
+        servicio: "Retiro",
+        total: total,
+        ticket: ticket.textContent
+
+    });
+
+    mostrarBotonesTicket();
+
+}
