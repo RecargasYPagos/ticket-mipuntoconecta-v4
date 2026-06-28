@@ -821,6 +821,7 @@ monto,
 comision,
 total,
 horario,
+autorizacion,
 folio
 
 ){
