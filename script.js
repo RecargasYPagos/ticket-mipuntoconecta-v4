@@ -969,3 +969,40 @@ function mostrarFormularioRetiro(){
     .onclick = generarTicketRetiro;
 
 }
+function generarTicketRetiro(){
+
+    const monto = parseFloat(
+        document.getElementById("montoRetiro").value || 0
+    );
+
+    const comision = parseFloat(
+        document.getElementById("comisionRetiro").value || 0
+    );
+
+    const banco =
+    document.getElementById("bancoRetiro").value;
+
+    const ultimos4 =
+    document.getElementById("ultimos4").value;
+
+    const autorizacion =
+    document.getElementById("autorizacionRetiro").value;
+
+    const folio =
+    document.getElementById("folioRetiro").value;
+
+    const total = monto + comision;
+
+    construirTicketRetiro(
+
+        monto,
+        comision,
+        total,
+        banco,
+        ultimos4,
+        autorizacion,
+        folio
+
+    );
+
+}
