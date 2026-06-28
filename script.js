@@ -616,21 +616,22 @@ function mostrarBotonesTicket(){
 
 function descargarTicket(){
 
-    const contenido = ticket.textContent;
+    html2canvas(ticket,{
+        backgroundColor:"#ffffff",
+        scale:2
+    }).then(function(canvas){
 
-    const archivo = new Blob(
-        [contenido],
-        {type:"text/plain"}
-    );
+        const enlace = document.createElement("a");
 
-    const enlace = document.createElement("a");
+        enlace.download =
+        "Ticket-"+Date.now()+".png";
 
-    enlace.href = URL.createObjectURL(archivo);
+        enlace.href =
+        canvas.toDataURL("image/png");
 
-    enlace.download =
-    "Ticket-"+Date.now()+".txt";
+        enlace.click();
 
-    enlace.click();
+    });
 
 }
 
