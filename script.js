@@ -828,8 +828,6 @@ folio
 
     const ahora = new Date();
 
-    const autorizacion = "";
-
     ticket.style.display = "block";
 
     ticket.textContent =
