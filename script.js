@@ -866,7 +866,7 @@ ocultarCuenta(cuenta) + "\n\n"+
     if(autorizacion!=""){
 
         ticket.textContent +=
-"AUTORIZ.: " + autorizacion + "\n";
+"AUTORIZACIÓN.: " + autorizacion + "\n";
 
     }
 
