@@ -48,8 +48,7 @@ btnHistorial.onclick=()=>mostrarHistorial();
 
 btnCorte.onclick=()=>mostrarCorteCaja();
 
-btnConfig.onclick=()=>alert("Configuración (Próximamente)");
-
+btnConfig.onclick=()=>mostrarConfiguracion();
 function generarFolio(){
 
     const hoy=new Date();
@@ -1619,5 +1618,64 @@ function generarCorteCaja(){
 CONFIG.negocio;
 
     mostrarBotonesTicket();
+
+}
+// =====================================
+// MÓDULO CONFIGURACIÓN - PARTE 1
+// =====================================
+
+function mostrarConfiguracion(){
+
+    limpiarPantalla();
+
+    formulario.innerHTML=`
+
+    <h2>⚙️ Configuración</h2>
+
+    <label>Nombre del negocio</label>
+
+    <input
+    id="cfgNegocio"
+    value="${CONFIG.negocio}">
+
+    <label>Dirección</label>
+
+    <textarea
+    id="cfgDireccion"
+    rows="3">${CONFIG.direccion}</textarea>
+
+    <label>Terminal</label>
+
+    <input
+    id="cfgTerminal"
+    value="${CONFIG.terminal}">
+
+    <label>Comisión por recarga</label>
+
+    <input
+    type="number"
+    id="cfgComision"
+    value="${CONFIG.comisionRecarga}">
+
+    <label>PIN de acceso</label>
+
+    <input
+    type="password"
+    id="cfgPin"
+    value="${CONFIG.pin}">
+
+    <button
+    id="guardarConfig"
+    class="accion">
+
+    💾 Guardar configuración
+
+    </button>
+
+    `;
+
+    document
+    .getElementById("guardarConfig")
+    .onclick = guardarConfiguracion;
 
 }
