@@ -1324,17 +1324,19 @@ function mostrarHistorial(){
 
         html+=`
 
-        <div class="historialItem">
+        <div
+class="historialItem"
+onclick="abrirTicketHistorial(${index})">
 
-            <strong>${item.servicio}</strong><br>
+<strong>${item.servicio}</strong><br>
 
-            ${item.fecha} ${item.hora}<br>
+${item.fecha} ${item.hora}<br>
 
-            Folio: ${item.folio}<br>
+Folio: ${item.folio}<br>
 
-            Total: $${item.total.toFixed(2)}
+Total: $${item.total.toFixed(2)}
 
-        </div>
+</div>
 
         `;
 
