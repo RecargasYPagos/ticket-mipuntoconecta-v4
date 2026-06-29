@@ -46,7 +46,7 @@ btnServicios.onclick=()=>mostrarFormularioServicios();
 
 btnHistorial.onclick=()=>mostrarHistorial();
 
-btnCorte.onclick=()=>alert("Corte de caja (Próximamente)");
+btnCorte.onclick=()=>mostrarCorteCaja();
 
 btnConfig.onclick=()=>alert("Configuración (Próximamente)");
 
@@ -1499,5 +1499,44 @@ function mostrarHistorialFiltrado(lista){
     });
 console.log(html);
     formulario.innerHTML=html;
+
+}
+// =====================================
+// MÓDULO CORTE DE CAJA - PARTE 1
+// =====================================
+
+function mostrarCorteCaja(){
+
+    limpiarPantalla();
+
+    formulario.innerHTML=`
+
+    <h2>💰 Corte de caja</h2>
+
+    <label>Fecha</label>
+
+    <input
+    id="fechaCorte"
+    type="date">
+
+    <button
+    id="generarCorte"
+    class="accion">
+
+    Generar Corte
+
+    </button>
+
+    `;
+
+    document
+    .getElementById("fechaCorte")
+    .value =
+    new Date().toISOString().split("T")[0];
+
+    document
+    .getElementById("generarCorte")
+    .onclick =
+    generarCorteCaja;
 
 }
