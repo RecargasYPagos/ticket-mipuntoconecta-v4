@@ -1164,6 +1164,8 @@ function mostrarFormularioServicios(){
 }
 function generarTicketServicio(){
 
+    console.log("Entró a generarTicketServicio");
+
     const empresa =
     document.getElementById("empresaServicio").value;
 
