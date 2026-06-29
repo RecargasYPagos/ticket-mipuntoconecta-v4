@@ -1203,3 +1203,90 @@ function generarTicketServicio(){
     );
 
 }
+function construirTicketServicio(
+
+empresa,
+referencia,
+cliente,
+importe,
+comision,
+total,
+autorizacion,
+folio
+
+){
+
+    const ahora = new Date();
+
+    ticket.style.display = "block";
+
+    ticket.textContent =
+
+"================================\n"+
+"        MI PUNTO CONECTA\n"+
+"   RECARGAS, PAGOS Y SERVICIOS\n"+
+"================================\n\n"+
+
+"PAGO DE SERVICIO ✓\n\n"+
+
+"FECHA: " + ahora.toLocaleDateString() + "\n"+
+"HORA : " + ahora.toLocaleTimeString() + "\n\n"+
+
+"EMPRESA : " + empresa + "\n"+
+"REFERENCIA:\n"+
+referencia + "\n\n";
+
+    if(cliente.trim()!=""){
+
+        ticket.textContent +=
+"CLIENTE:\n"+
+cliente + "\n\n";
+
+    }
+
+    ticket.textContent +=
+
+"IMPORTE : $" + importe.toFixed(2) + "\n"+
+"COMISIÓN: $" + comision.toFixed(2) + "\n"+
+"TOTAL   : $" + total.toFixed(2) + "\n\n"+
+
+"FOLIO   : " + folio + "\n"+
+"TERMINAL: " + CONFIG.terminal + "\n";
+
+    if(autorizacion.trim()!=""){
+
+        ticket.textContent +=
+"AUTORIZACIÓN: " + autorizacion + "\n";
+
+    }
+
+    ticket.textContent +=
+
+"\n================================\n"+
+
+CONFIG.negocio + "\n"+
+
+CONFIG.direccion + "\n\n"+
+
+"Conserve este comprobante.\n"+
+"Gracias por su preferencia.";
+
+    guardarHistorial({
+
+        fecha: ahora.toLocaleDateString(),
+
+        hora: ahora.toLocaleTimeString(),
+
+        folio: folio,
+
+        servicio: "Pago de servicio",
+
+        total: total,
+
+        ticket: ticket.textContent
+
+    });
+
+    mostrarBotonesTicket();
+
+}
