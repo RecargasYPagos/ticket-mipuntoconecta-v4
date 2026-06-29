@@ -1495,7 +1495,7 @@ function mostrarHistorialFiltrado(lista){
         `;
 
     });
-
+console.log(html);
     formulario.innerHTML=html;
 
 }
