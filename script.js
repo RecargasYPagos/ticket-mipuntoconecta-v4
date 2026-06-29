@@ -1324,9 +1324,7 @@ function mostrarHistorial(){
 
         html+=`
 
-        <div
-class="historialItem"
-onclick="abrirTicketHistorial(${index})">
+        <div class="historialItem">
 
 <strong>${item.servicio}</strong><br>
 
@@ -1334,7 +1332,21 @@ ${item.fecha} ${item.hora}<br>
 
 Folio: ${item.folio}<br>
 
-Total: $${item.total.toFixed(2)}
+Total: $${item.total.toFixed(2)}<br><br>
+
+<button
+onclick="abrirTicketHistorial(${index})">
+
+📄 Ver Ticket
+
+</button>
+
+<button
+onclick="eliminarMovimiento(${index})">
+
+🗑 Eliminar
+
+</button>
 
 </div>
 
@@ -1362,5 +1374,29 @@ function abrirTicketHistorial(indice){
     historial[indice].ticket;
 
     mostrarBotonesTicket();
+
+}
+// =====================================
+// HISTORIAL - ELIMINAR MOVIMIENTO
+// =====================================
+
+function eliminarMovimiento(indice){
+
+    if(!confirm("¿Eliminar este movimiento?")){
+        return;
+    }
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialMPC") || "[]"
+    );
+
+    historial.splice(indice,1);
+
+    localStorage.setItem(
+        "historialMPC",
+        JSON.stringify(historial)
+    );
+
+    mostrarHistorial();
 
 }
