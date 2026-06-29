@@ -1540,3 +1540,84 @@ function mostrarCorteCaja(){
     generarCorteCaja;
 
 }
+function generarCorteCaja(){
+
+    const fechaSeleccionada =
+    document.getElementById("fechaCorte").value;
+
+    const historial = JSON.parse(
+        localStorage.getItem("historialMPC") || "[]"
+    );
+
+    let total = 0;
+    let recargas = 0;
+    let depositos = 0;
+    let retiros = 0;
+    let servicios = 0;
+    let operaciones = 0;
+
+    historial.forEach(function(item){
+
+        const partes = item.fecha.split("/");
+
+        const fechaItem =
+        partes[2] + "-" +
+        partes[1].padStart(2,"0") + "-" +
+        partes[0].padStart(2,"0");
+
+        if(fechaItem == fechaSeleccionada){
+
+            operaciones++;
+            total += item.total;
+
+            switch(item.servicio){
+
+                case "Recarga":
+                    recargas++;
+                    break;
+
+                case "Depósito":
+                    depositos++;
+                    break;
+
+                case "Retiro":
+                    retiros++;
+                    break;
+
+                case "Pago de servicio":
+                    servicios++;
+                    break;
+
+            }
+
+        }
+
+    });
+
+    ticket.style.display = "block";
+
+    ticket.textContent =
+
+"================================\n"+
+"        MI PUNTO CONECTA\n"+
+"        CORTE DE CAJA\n"+
+"================================\n\n"+
+
+"FECHA: " + fechaSeleccionada + "\n\n"+
+
+"OPERACIONES: " + operaciones + "\n"+
+"RECARGAS: " + recargas + "\n"+
+"DEPÓSITOS: " + depositos + "\n"+
+"RETIROS: " + retiros + "\n"+
+"PAGOS: " + servicios + "\n\n"+
+
+"TOTAL COBRADO\n"+
+"$" + total.toFixed(2) + "\n\n"+
+
+"================================\n"+
+
+CONFIG.negocio;
+
+    mostrarBotonesTicket();
+
+}
