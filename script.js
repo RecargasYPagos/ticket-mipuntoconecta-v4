@@ -1679,3 +1679,30 @@ function mostrarConfiguracion(){
     .onclick = guardarConfiguracion;
 
 }
+function guardarConfiguracion(){
+
+    CONFIG.negocio =
+    document.getElementById("cfgNegocio").value;
+
+    CONFIG.direccion =
+    document.getElementById("cfgDireccion").value;
+
+    CONFIG.terminal =
+    document.getElementById("cfgTerminal").value;
+
+    CONFIG.comisionRecarga =
+    parseFloat(
+        document.getElementById("cfgComision").value
+    );
+
+    CONFIG.pin =
+    document.getElementById("cfgPin").value;
+
+    localStorage.setItem(
+        "configMPC",
+        JSON.stringify(CONFIG)
+    );
+
+    alert("✅ Configuración guardada correctamente.");
+
+}
