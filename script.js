@@ -1459,7 +1459,7 @@ function buscarHistorial(){
 
     });
 
-    mostrarHistorialFiltrado(resultado);
+    alert("Resultados encontrados: " + resultado.length);
 
 }
 
