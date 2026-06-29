@@ -44,7 +44,7 @@ btnRetiros.onclick=()=>mostrarFormularioRetiro();
 
 btnServicios.onclick=()=>mostrarFormularioServicios();
 
-btnHistorial.onclick=()=>alert("Historial (Próximamente)");
+btnHistorial.onclick=()=>mostrarHistorial();
 
 btnCorte.onclick=()=>alert("Corte de caja (Próximamente)");
 
@@ -1290,5 +1290,56 @@ CONFIG.direccion + "\n\n"+
     });
 
     mostrarBotonesTicket();
+
+}
+// =====================================
+// MÓDULO HISTORIAL - PARTE 1
+// =====================================
+
+function mostrarHistorial(){
+
+    limpiarPantalla();
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialMPC") || "[]"
+    );
+
+    if(historial.length==0){
+
+        formulario.innerHTML=`
+
+        <h2>📚 Historial</h2>
+
+        <p>No existen movimientos registrados.</p>
+
+        `;
+
+        return;
+
+    }
+
+    let html="<h2>📚 Historial</h2>";
+
+    historial.forEach(function(item,index){
+
+        html+=`
+
+        <div class="historialItem">
+
+            <strong>${item.servicio}</strong><br>
+
+            ${item.fecha} ${item.hora}<br>
+
+            Folio: ${item.folio}<br>
+
+            Total: $${item.total.toFixed(2)}
+
+        </div>
+
+        `;
+
+    });
+
+    formulario.innerHTML=html;
 
 }
