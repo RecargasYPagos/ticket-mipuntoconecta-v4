@@ -1162,3 +1162,44 @@ function mostrarFormularioServicios(){
     .onclick = generarTicketServicio;
 
 }
+function generarTicketServicio(){
+
+    const empresa =
+    document.getElementById("empresaServicio").value;
+
+    const referencia =
+    document.getElementById("referenciaServicio").value;
+
+    const cliente =
+    document.getElementById("clienteServicio").value;
+
+    const importe =
+    parseFloat(
+        document.getElementById("importeServicio").value || 0
+    );
+
+    const comision =
+    parseFloat(
+        document.getElementById("comisionServicio").value || 0
+    );
+
+    const autorizacion =
+    document.getElementById("autorizacionServicio").value;
+
+    const folio =
+    document.getElementById("folioServicio").value;
+
+    const total = importe + comision;
+
+    construirTicketServicio(
+        empresa,
+        referencia,
+        cliente,
+        importe,
+        comision,
+        total,
+        autorizacion,
+        folio
+    );
+
+}
