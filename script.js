@@ -1081,3 +1081,84 @@ CONFIG.direccion + "\n\n"+
     mostrarBotonesTicket();
 
 }
+// =====================================
+// MÓDULO SERVICIOS - PARTE 5A-1
+// FORMULARIO
+// =====================================
+
+function mostrarFormularioServicios(){
+
+    limpiarPantalla();
+
+    const folio = generarFolio();
+
+    formulario.innerHTML = `
+
+    <h2>📺 Pago de servicios</h2>
+
+    <label>Empresa</label>
+
+    <select id="empresaServicio">
+
+        <option>CFE</option>
+        <option>Telmex</option>
+        <option>Izzi</option>
+        <option>Megacable</option>
+        <option>Totalplay</option>
+        <option>SKY</option>
+        <option>VeTV</option>
+        <option>Star TV</option>
+        <option>Agua</option>
+
+    </select>
+
+    <label>Referencia o número de servicio</label>
+
+    <input
+    id="referenciaServicio"
+    placeholder="Número de referencia">
+
+    <label>Nombre del cliente (opcional)</label>
+
+    <input
+    id="clienteServicio">
+
+    <label>Importe</label>
+
+    <input
+    type="number"
+    id="importeServicio">
+
+    <label>Comisión</label>
+
+    <input
+    type="number"
+    id="comisionServicio"
+    placeholder="Ejemplo: 15">
+
+    <label>Número de autorización (opcional)</label>
+
+    <input
+    id="autorizacionServicio">
+
+    <label>Folio</label>
+
+    <input
+    id="folioServicio"
+    value="${folio}">
+
+    <button
+    id="generarServicio"
+    class="accion">
+
+    Generar Ticket
+
+    </button>
+
+    `;
+
+    document
+    .getElementById("generarServicio")
+    .onclick = generarTicketServicio;
+
+}
