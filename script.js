@@ -1318,7 +1318,40 @@ function mostrarHistorial(){
 
     }
 
-    let html="<h2>📚 Historial</h2>";
+    let html=`
+
+<h2>📚 Historial</h2>
+
+<div class="barraHistorial">
+
+<input
+id="buscarHistorial"
+placeholder="🔍 Buscar por folio">
+
+<button
+onclick="buscarHistorial()">
+
+Buscar
+
+</button>
+
+<button
+onclick="vaciarHistorial()">
+
+🗑 Vaciar historial
+
+</button>
+
+</div>
+
+<p>
+
+Movimientos:
+<b>${historial.length}</b>
+
+</p>
+
+`;
 
     historial.forEach(function(item,index){
 
@@ -1398,5 +1431,70 @@ function eliminarMovimiento(indice){
     );
 
     mostrarHistorial();
+
+}
+// =====================================
+// HISTORIAL - BUSCAR
+// =====================================
+
+function buscarHistorial(){
+
+    const texto =
+    document.getElementById("buscarHistorial")
+    .value
+    .toLowerCase();
+
+    const historial = JSON.parse(
+        localStorage.getItem("historialMPC") || "[]"
+    );
+
+    const resultado = historial.filter(function(item){
+
+        return item.folio
+        .toLowerCase()
+        .includes(texto);
+
+    });
+
+    mostrarHistorialFiltrado(resultado);
+
+}
+
+function mostrarHistorialFiltrado(lista){
+
+    limpiarPantalla();
+
+    let html="<h2>📚 Resultado de búsqueda</h2>";
+
+    if(lista.length==0){
+
+        formulario.innerHTML +=
+        "<p>No se encontraron resultados.</p>";
+
+        return;
+
+    }
+
+    lista.forEach(function(item){
+
+        html+=`
+
+        <div class="historialItem">
+
+        <strong>${item.servicio}</strong><br>
+
+        ${item.fecha} ${item.hora}<br>
+
+        Folio: ${item.folio}<br>
+
+        Total: $${item.total.toFixed(2)}
+
+        </div>
+
+        `;
+
+    });
+
+    formulario.innerHTML=html;
 
 }
