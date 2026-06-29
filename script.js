@@ -1345,3 +1345,22 @@ Total: $${item.total.toFixed(2)}
     formulario.innerHTML=html;
 
 }
+// =====================================
+// MÓDULO HISTORIAL - PARTE 2
+// ABRIR TICKET
+// =====================================
+
+function abrirTicketHistorial(indice){
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialMPC") || "[]"
+    );
+
+    ticket.style.display = "block";
+
+    ticket.textContent =
+    historial[indice].ticket;
+
+    mostrarBotonesTicket();
+
+}
