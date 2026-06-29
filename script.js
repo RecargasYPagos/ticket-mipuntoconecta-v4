@@ -1386,7 +1386,8 @@ onclick="eliminarMovimiento(${index})">
         `;
 
     });
-
+console.log(html);
+    
     formulario.innerHTML=html;
 
 }
