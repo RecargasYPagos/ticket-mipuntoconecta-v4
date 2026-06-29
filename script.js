@@ -1439,7 +1439,7 @@ function eliminarMovimiento(indice){
 // =====================================
 
 function buscarHistorial(){
-
+console.log("Buscar presionado");
     const texto =
     document.getElementById("buscarHistorial")
     .value
