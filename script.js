@@ -16,7 +16,19 @@ const CONFIG = {
     pin:"1234"
 
 };
+const configGuardada =
+JSON.parse(
+    localStorage.getItem("configMPC") || "null"
+);
 
+if(configGuardada){
+
+    Object.assign(
+        CONFIG,
+        configGuardada
+    );
+
+}
 const formulario=document.getElementById("contenedorFormulario");
 
 const ticket=document.getElementById("ticket");
