@@ -1739,3 +1739,28 @@ function guardarConfiguracion(){
     alert("✅ Configuración guardada correctamente.");
 
 }
+function restablecerConfiguracion(){
+
+    localStorage.removeItem("configMPC");
+
+    alert("Configuración restablecida.");
+
+    location.reload();
+
+}
+
+function borrarTodosLosDatos(){
+
+    if(!confirm("¿Deseas borrar todo el historial y la configuración?")){
+        return;
+    }
+
+    localStorage.removeItem("historialMPC");
+    localStorage.removeItem("folio");
+    localStorage.removeItem("configMPC");
+
+    alert("Todos los datos fueron eliminados.");
+
+    location.reload();
+
+}
