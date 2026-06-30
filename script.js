@@ -1694,6 +1694,28 @@ class="accion">
 🗑 Borrar todos los datos
 
 </button>
+
+<button
+id="btnRespaldo"
+class="accion">
+
+💾 Crear respaldo
+
+</button>
+
+<button
+id="btnRestaurar"
+class="accion">
+
+📂 Restaurar respaldo
+
+</button>
+
+<input
+type="file"
+id="archivoRespaldo"
+accept=".json"
+style="display:none;">
     `;
 
     document
