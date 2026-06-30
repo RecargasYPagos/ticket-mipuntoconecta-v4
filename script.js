@@ -1838,3 +1838,61 @@ function crearRespaldo(){
     enlace.click();
 
 }
+function restaurarRespaldo(event){
+
+    const archivo = event.target.files[0];
+
+    if(!archivo){
+        return;
+    }
+
+    const lector = new FileReader();
+
+    lector.onload = function(e){
+
+        try{
+
+            const datos = JSON.parse(e.target.result);
+
+            if(datos.historial){
+
+                localStorage.setItem(
+                    "historialMPC",
+                    JSON.stringify(datos.historial)
+                );
+
+            }
+
+            if(datos.folio){
+
+                localStorage.setItem(
+                    "folio",
+                    datos.folio
+                );
+
+            }
+
+            if(datos.configuracion){
+
+                localStorage.setItem(
+                    "configMPC",
+                    JSON.stringify(datos.configuracion)
+                );
+
+            }
+
+            alert("Respaldo restaurado correctamente.");
+
+            location.reload();
+
+        }catch(error){
+
+            alert("El archivo no es un respaldo válido.");
+
+        }
+
+    };
+
+    lector.readAsText(archivo);
+
+}
