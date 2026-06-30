@@ -1683,13 +1683,34 @@ function mostrarConfiguracion(){
     💾 Guardar configuración
 
     </button>
+<button
+id="restablecerConfig"
+class="accion">
 
+🔄 Restablecer valores
+
+</button>
+
+<button
+id="borrarDatos"
+class="accion">
+
+🗑 Borrar todos los datos
+
+</button>
     `;
 
     document
     .getElementById("guardarConfig")
     .onclick = guardarConfiguracion;
 
+    document
+.getElementById("restablecerConfig")
+.onclick = restablecerConfiguracion;
+
+document
+.getElementById("borrarDatos")
+.onclick = borrarTodosLosDatos;
 }
 function guardarConfiguracion(){
 
