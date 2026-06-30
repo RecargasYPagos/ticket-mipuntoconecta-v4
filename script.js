@@ -1729,6 +1729,24 @@ style="display:none;">
 document
 .getElementById("borrarDatos")
 .onclick = borrarTodosLosDatos;
+
+    document
+.getElementById("btnRespaldo")
+.onclick = crearRespaldo;
+
+document
+.getElementById("btnRestaurar")
+.onclick = function(){
+
+    document
+    .getElementById("archivoRespaldo")
+    .click();
+
+};
+
+document
+.getElementById("archivoRespaldo")
+.onchange = restaurarRespaldo;
 }
 function guardarConfiguracion(){
 
