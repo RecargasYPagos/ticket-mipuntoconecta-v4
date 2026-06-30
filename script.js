@@ -1451,8 +1451,6 @@ function eliminarMovimiento(indice){
 
 function buscarHistorial(){
 
-    alert("Buscar presionado");
-
     const texto =
     document.getElementById("buscarHistorial")
     .value
@@ -1469,8 +1467,6 @@ function buscarHistorial(){
         .includes(texto);
 
     });
-
-    alert("Resultados encontrados: " + resultado.length);
 
 }
 
