@@ -1800,3 +1800,41 @@ function borrarTodosLosDatos(){
     location.reload();
 
 }
+function crearRespaldo(){
+
+    const respaldo = {
+
+        historial:
+        JSON.parse(
+            localStorage.getItem("historialMPC") || "[]"
+        ),
+
+        folio:
+        localStorage.getItem("folio"),
+
+        configuracion:
+        JSON.parse(
+            localStorage.getItem("configMPC") || "{}"
+        )
+
+    };
+
+    const archivo = new Blob(
+
+        [JSON.stringify(respaldo,null,2)],
+
+        {type:"application/json"}
+
+    );
+
+    const enlace = document.createElement("a");
+
+    enlace.href =
+    URL.createObjectURL(archivo);
+
+    enlace.download =
+    "Respaldo-MiPuntoConecta-"+Date.now()+".json";
+
+    enlace.click();
+
+}
